@@ -701,7 +701,7 @@ char *yytext;
 
 int lines = 1;
 int sourceline = 1;
-char* sourcefile = new char;
+char* sourcefile = "\"\"";
 /* Lexical Elements taken from "The C89 Draft" - http://port70.net/~nsz/c/c89/c89-draft.html */
 /* Keyword List */
 /* End of Keyword List */
