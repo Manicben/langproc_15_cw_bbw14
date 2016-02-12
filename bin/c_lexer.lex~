@@ -10,7 +10,7 @@ int lines = 0;
 // Keyword List
 AUTO			auto
 DOUBLE			double
-INT				int
+INT			int
 STRUCT			struct
 BREAK			break
 ELSE			else
@@ -29,15 +29,15 @@ FLOAT			float
 SHORT			short
 UNSIGNED		unsigned
 CONTINUE		continue
-FOR				for
+FOR			for
 SIGNED			signed
 VOID			void
 DEFAULT			default
 GOTO			goto
 SIZEOF			sizeof
 VOLATILE		volatile
-DO				do
-IF				if
+DO			do
+IF			if
 STATIC			static
 WHILE			while
 // End of Keyword List
@@ -66,7 +66,7 @@ INCREMENT		[+][+]
 DECREMENT		[-][-]
 BITWISEAND		[&]
 ASTERISK		[*]
-ADD				[+]
+ADD			[+]
 SUBTRACT		[-]
 BITWISENOT		[~]
 LOGICNOT		[!]
@@ -77,21 +77,21 @@ RIGHTSHIFT		[>][>]
 LESSTHAN		[<]
 GREATERTHAN		[>]
 LESSEQUAL		[<][=]
-GREATEREQUAL	[>][=]
+GREATEREQUAL		[>][=]
 LOGICEQUAL		[=][=]
 NOTEQUAL		[!][=]
-HAT				[^]
+HAT			[^]
 BITWISEOR		[|]
-AND				[&][&]
-OR				[|][|]
+AND			[&][&]
+OR			[|][|]
 QUESTION		[?]
 MULTEQUAL		[*][=]
 DIVEQUAL		[/][=]
 MODEQUAL		[%][=]
 ADDEQUAL		[+][=]
 SUBEQUAL		[-][=]
-LEFTSHIFTEQUAL	[<][<][=]
-RIGHTSHIFTEQUAL	[>][>][=]
+LEFTSHIFTEQUAL		[<][<][=]
+RIGHTSHIFTEQUAL		[>][>][=]
 ANDEQUAL		[&][=]
 HATEQUAL		[^=]
 OREQUAL			[|][=]
@@ -108,9 +108,9 @@ OCTALINT		[0][1-7]*[uU]?[lL]?[lL]?
 //CONSTCHAR
 
 // Misc
-STRINGLITERAL	[\"][.]*[\"]
-WS				[ ]|[\t]
-NEWLINE			[/n]
+STRINGLITERAL		[\"][.]*[\"]
+WS			[ ]|[\t]
+NEWLINE			[\n]
 
 %%
 
@@ -147,14 +147,14 @@ NEWLINE			[/n]
 {STATIC}			printf("%s KEYWORD TStatic %u SOURCEFILE SOURCELINE\n", yytext, lines);
 {WHILE}				printf("%s KEYWORD TWhile %u SOURCEFILE SOURCELINE\n", yytext, lines);
 
-{IDENTIFIER}		printf("%s IDENTIFIER TIdentifier %u SOURCEFILE SOURCELINE\n", yytext, lines);
+{IDENTIFIER}			printf("%s IDENTIFIER TIdentifier %u SOURCEFILE SOURCELINE\n", yytext, lines);
 
-{OPENBRACKET}		printf("%s OPERATOR TOpenBracket %u SOURCEFILE SOURCELINE\n", yytext, lines);
-{CLOSEBRACKET}		printf("%s OPERATOR TCloseBracket %u SOURCEFILE SOURCELINE\n", yytext, lines);
+{OPENBRACKET}			printf("%s OPERATOR TOpenBracket %u SOURCEFILE SOURCELINE\n", yytext, lines);
+{CLOSEBRACKET}			printf("%s OPERATOR TCloseBracket %u SOURCEFILE SOURCELINE\n", yytext, lines);
 {OPENROUND}			printf("%s OPERATOR TOpenRound %u SOURCEFILE SOURCELINE\n", yytext, lines);
-{CLOSEROUND}		printf("%s OPERATOR TCloseRound %u SOURCEFILE SOURCELINE\n", yytext, lines);
+{CLOSEROUND}			printf("%s OPERATOR TCloseRound %u SOURCEFILE SOURCELINE\n", yytext, lines);
 {OPENBRACE}			printf("%s OPERATOR TOpenBrace %u SOURCEFILE SOURCELINE\n", yytext, lines);
-{CLOSEBRACE}		printf("%s OPERATOR TCloseBrace %u SOURCEFILE SOURCELINE\n", yytext, lines);
+{CLOSEBRACE}			printf("%s OPERATOR TCloseBrace %u SOURCEFILE SOURCELINE\n", yytext, lines);
 {COMMA}				printf("%s OPERATOR TComma %u SOURCEFILE SOURCELINE\n", yytext, lines);
 {COLON}				printf("%s OPERATOR TColon %u SOURCEFILE SOURCELINE\n", yytext, lines);
 {EQUAL}				printf("%s OPERATOR TEqual %u SOURCEFILE SOURCELINE\n", yytext, lines);
@@ -165,21 +165,21 @@ NEWLINE			[/n]
 {ARROW}				printf("%s OPERATOR TArrow %u SOURCEFILE SOURCELINE\n", yytext, lines);
 {INCREMENT}			printf("%s OPERATOR TIncrement %u SOURCEFILE SOURCELINE\n", yytext, lines);
 {DECREMENT}			printf("%s OPERATOR TDecrement %u SOURCEFILE SOURCELINE\n", yytext, lines);
-{BITWISEAND}		printf("%s OPERATOR TBitwiseAnd %u SOURCEFILE SOURCELINE\n", yytext, lines);
+{BITWISEAND}			printf("%s OPERATOR TBitwiseAnd %u SOURCEFILE SOURCELINE\n", yytext, lines);
 {ASTERISK}			printf("%s OPERATOR TAsterisk %u SOURCEFILE SOURCELINE\n", yytext, lines);
 {ADD}				printf("%s OPERATOR TAdd %u SOURCEFILE SOURCELINE\n", yytext, lines);
 {SUBTRACT}			printf("%s OPERATOR TSubtract %u SOURCEFILE SOURCELINE\n", yytext, lines);
-{BITWISENOT}		printf("%s OPERATOR TBitwiseNot %u SOURCEFILE SOURCELINE\n", yytext, lines);
+{BITWISENOT}			printf("%s OPERATOR TBitwiseNot %u SOURCEFILE SOURCELINE\n", yytext, lines);
 {LOGICNOT}			printf("%s OPERATOR TLogicNot %u SOURCEFILE SOURCELINE\n", yytext, lines);
 {DIVIDE}			printf("%s OPERATOR TDivide %u SOURCEFILE SOURCELINE\n", yytext, lines);
 {MODULO}			printf("%s OPERATOR TModulo %u SOURCEFILE SOURCELINE\n", yytext, lines);
 {LEFTSHIFT}			printf("%s OPERATOR TLeftShift %u SOURCEFILE SOURCELINE\n", yytext, lines);
-{RIGHTSHIFT}		printf("%s OPERATOR TRightShift %u SOURCEFILE SOURCELINE\n", yytext, lines);
+{RIGHTSHIFT}			printf("%s OPERATOR TRightShift %u SOURCEFILE SOURCELINE\n", yytext, lines);
 {LESSTHAN}			printf("%s OPERATOR TLessThan %u SOURCEFILE SOURCELINE\n", yytext, lines);
-{GREATERTHAN}		printf("%s OPERATOR TGreaterThan %u SOURCEFILE SOURCELINE\n", yytext, lines);
+{GREATERTHAN}			printf("%s OPERATOR TGreaterThan %u SOURCEFILE SOURCELINE\n", yytext, lines);
 {LESSEQUAL}			printf("%s OPERATOR TLessEqual %u SOURCEFILE SOURCELINE\n", yytext, lines);
-{GREATEREQUAL}		printf("%s OPERATOR TGreaterEqual %u SOURCEFILE SOURCELINE\n", yytext, lines);
-{LOGICEQUAL}		printf("%s OPERATOR TLogicEqual %u SOURCEFILE SOURCELINE\n", yytext, lines);
+{GREATEREQUAL}			printf("%s OPERATOR TGreaterEqual %u SOURCEFILE SOURCELINE\n", yytext, lines);
+{LOGICEQUAL}			printf("%s OPERATOR TLogicEqual %u SOURCEFILE SOURCELINE\n", yytext, lines);
 {NOTEQUAL}			printf("%s OPERATOR TNotEqual %u SOURCEFILE SOURCELINE\n", yytext, lines);
 {HAT}				printf("%s OPERATOR THat %u SOURCEFILE SOURCELINE\n", yytext, lines);
 {BITWISEOR}			printf("%s OPERATOR TBitwiseOr %u SOURCEFILE SOURCELINE\n", yytext, lines);
@@ -191,25 +191,25 @@ NEWLINE			[/n]
 {MODEQUAL}			printf("%s OPERATOR TModEqual %u SOURCEFILE SOURCELINE\n", yytext, lines);
 {ADDEQUAL}			printf("%s OPERATOR TAddEqual %u SOURCEFILE SOURCELINE\n", yytext, lines);
 {SUBEQUAL}			printf("%s OPERATOR TSubEqual %u SOURCEFILE SOURCELINE\n", yytext, lines);
-{LEFTSHIFTEQUAL}	printf("%s OPERATOR TLeftShiftEqual %u SOURCEFILE SOURCELINE\n", yytext, lines);
-{RIGHTSHIFTEQUAL}	printf("%s OPERATOR TRightShiftEqual %u SOURCEFILE SOURCELINE\n", yytext, lines);
+{LEFTSHIFTEQUAL}		printf("%s OPERATOR TLeftShiftEqual %u SOURCEFILE SOURCELINE\n", yytext, lines);
+{RIGHTSHIFTEQUAL}		printf("%s OPERATOR TRightShiftEqual %u SOURCEFILE SOURCELINE\n", yytext, lines);
 {ANDEQUAL}			printf("%s OPERATOR TAndEqual %u SOURCEFILE SOURCELINE\n", yytext, lines);
 {HATEQUAL}			printf("%s OPERATOR THatEqual %u SOURCEFILE SOURCELINE\n", yytext, lines);
 {OREQUAL}			printf("%s OPERATOR TOrEqual %u SOURCEFILE SOURCELINE\n", yytext, lines);
-{DOUBLEHASH}		printf("%s OPERATOR TDoubleHash %u SOURCEFILE SOURCELINE\n", yytext, lines);
+{DOUBLEHASH}			printf("%s OPERATOR TDoubleHash %u SOURCEFILE SOURCELINE\n", yytext, lines);
 
-{CONSTFLOAT}		printf("%s CONSTANT	TConstFloat %u SOURCEFILE SOURCELINE\n", yytext, lines);
+{CONSTFLOAT}			printf("%s CONSTANT	TConstFloat %u SOURCEFILE SOURCELINE\n", yytext, lines);
 {CONSTINT}			printf("%s CONSTANT	TConstInt %u SOURCEFILE SOURCELINE\n", yytext, lines);
 {HEXINT}			printf("%s CONSTANT	THexInt %u SOURCEFILE SOURCELINE\n", yytext, lines);
 {OCTALINT}			printf("%s CONSTANT	TOctalInt %u SOURCEFILE SOURCELINE\n", yytext, lines);
-{UNSIGNEDINT}		printf("%s CONSTANT	TUnsignedInt %u SOURCEFILE SOURCELINE\n", yytext, lines);
+{UNSIGNEDINT}			printf("%s CONSTANT	TUnsignedInt %u SOURCEFILE SOURCELINE\n", yytext, lines);
 {SIGNEDINT}			printf("%s CONSTANT TSignedInt %u SOURCEFILE SOURCELINE\n", yytext, lines);
 
 
 //CONSTENUM
 //CONSTCHAR
 
-{STRINGLITERAL}		printf("%s STRINGLITERAL TString %u SOURCEFILE SOURCELINE\n", yytext, lines);
+{STRINGLITERAL}			printf("%s STRINGLITERAL TString %u SOURCEFILE SOURCELINE\n", yytext, lines);
 {WS}				;
 {NEWLINE}			lines++;
 
