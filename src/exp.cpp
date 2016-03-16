@@ -64,7 +64,7 @@ void add_node:: print() {
 
 
 // subtract_node inherits the characteristics of node and adds its own evaluate function
-  subtract_node::minus_node(exp_node *L, exp_node *R) : operator_node(L,R) {
+  subtract_node::subtract_node(exp_node *L, exp_node *R) : operator_node(L,R) {
   }
 
 void subtract_node:: print() {

@@ -38,12 +38,12 @@ void id_node:: print() {
     return idTable[id]; 
   }
 
-// plus_node inherits the characteristics of node and adds its own evaluate function
-  // plus_node's constructor just uses node's constructor
-  plus_node::plus_node(exp_node *L, exp_node *R) : operator_node(L,R) {
+// add_node inherits the characteristics of node and adds its own evaluate function
+  // add_node's constructor just uses node's constructor
+  add_node::add_node(exp_node *L, exp_node *R) : operator_node(L,R) {
   }
 
-void plus_node:: print() {
+void add_node:: print() {
   cout << "(";
   left->print();
   cout << " + ";
@@ -51,23 +51,23 @@ void plus_node:: print() {
   cout << ")";
 }
 
-  int plus_node::evaluate() {
+  int add_node::evaluate() {
     int left_num, right_num;
 
     left_num  = left->evaluate();
     right_num = right->evaluate();
 
     num = left_num + right_num;
-    cout << "plus_node: " << left_num << " + " << right_num << " = " << num << "\n";
+    cout << "add_node: " << left_num << " + " << right_num << " = " << num << "\n";
     return (num);
   }
 
 
-// minus_node inherits the characteristics of node and adds its own evaluate function
-  minus_node::minus_node(exp_node *L, exp_node *R) : operator_node(L,R) {
+// subtract_node inherits the characteristics of node and adds its own evaluate function
+  subtract_node::minus_node(exp_node *L, exp_node *R) : operator_node(L,R) {
   }
 
-void minus_node:: print() {
+void subtract_node:: print() {
   cout << "(";
   left->print();
   cout << " - ";
@@ -75,14 +75,14 @@ void minus_node:: print() {
   cout << ")";
 }
 
-  int minus_node::evaluate() {
+  int subtract_node::evaluate() {
     int left_num, right_num;
 
     left_num  = left->evaluate();
     right_num = right->evaluate();
 
     num = left_num - right_num;
-    cout << "minus_node: " << left_num << " - " << right_num << " = " << num << "\n";
+    cout << "subtract_node: " << left_num << " - " << right_num << " = " << num << "\n";
     return (num);
   }
 
