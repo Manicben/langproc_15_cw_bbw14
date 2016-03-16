@@ -4,11 +4,9 @@
 #include <string>
 #include "c_parse.tab.hpp"
 
-extern "C" int yylex();
-
 int lines = 1;
 int sourceline = 1;
-char const* sourcefile = "\"\"";
+char* sourcefile = "\"\"";
 %}
 
 /* Lexical Elements taken from "The C89 Draft" - http://port70.net/~nsz/c/c89/c89-draft.html */
@@ -130,9 +128,9 @@ INVALID			[^({IDENTIFIER}|{CONSTFLOAT}|{CONSTINT}|{HEXINT}|{OCTINT}|{UNSIGNEDINT
 {WHITESPACE}				
 {NEWLINE}			lines++, sourceline++;
 
-{AUTO}				;
-{DOUBLE}			;
-{INT}				yylval.str = strdup(yytext); return TInt;
+{AUTO}				printf("%s KEYWORD TAuto %i %s %i\n", yytext, lines, sourcefile, sourceline);
+{DOUBLE}			printf("%s KEYWORD TDouble %i %s %i\n", yytext, lines, sourcefile, sourceline);
+{INT}				printf("%s KEYWORD TInt %i %s %i\n", yytext, lines, sourcefile, sourceline);
 {STRUCT}			printf("%s KEYWORD TStruct %i %s %i\n", yytext, lines, sourcefile, sourceline);
 {BREAK}				printf("%s KEYWORD TBreak %i %s %i\n", yytext, lines, sourcefile, sourceline);
 {ELSE}				printf("%s KEYWORD TElse %i %s %i\n", yytext, lines, sourcefile, sourceline);
@@ -144,37 +142,38 @@ INVALID			[^({IDENTIFIER}|{CONSTFLOAT}|{CONSTINT}|{HEXINT}|{OCTINT}|{UNSIGNEDINT
 {TYPEDEF}			printf("%s KEYWORD TTypedef %i %s %i\n", yytext, lines, sourcefile, sourceline);
 {CHAR}				printf("%s KEYWORD TChar %i %s %i\n", yytext, lines, sourcefile, sourceline);
 {EXTERN}			printf("%s KEYWORD TExtern %i %s %i\n", yytext, lines, sourcefile, sourceline);
-{RETURN}			yylval.str = strdup(yytext); return TReturn;
+{RETURN}			printf("%s KEYWORD TReturn %i %s %i\n", yytext, lines, sourcefile, sourceline);
 {UNION}				printf("%s KEYWORD TUnion %i %s %i\n", yytext, lines, sourcefile, sourceline);
 {CONST}				printf("%s KEYWORD TConst %i %s %i\n", yytext, lines, sourcefile, sourceline);
 {FLOAT}				printf("%s KEYWORD TFloat %i %s %i\n", yytext, lines, sourcefile, sourceline);
 {SHORT}				printf("%s KEYWORD TShort %i %s %i\n", yytext, lines, sourcefile, sourceline);
 {UNSIGNED}			printf("%s KEYWORD TUnsigned %i %s %i\n", yytext, lines, sourcefile, sourceline);
 {CONTINUE}			printf("%s KEYWORD TContinue %i %s %i\n", yytext, lines, sourcefile, sourceline);
-{FOR}				yylval.str = strdup(yytext); return TFor;
+{FOR}				printf("%s KEYWORD TFor %i %s %i\n", yytext, lines, sourcefile, sourceline);
 {SIGNED}			printf("%s KEYWORD TSigned %i %s %i\n", yytext, lines, sourcefile, sourceline);
 {VOID}				printf("%s KEYWORD TVoid %i %s %i\n", yytext, lines, sourcefile, sourceline);
 {DEFAULT}			printf("%s KEYWORD TDefault %i %s %i\n", yytext, lines, sourcefile, sourceline);
 {GOTO}				printf("%s KEYWORD TGoto %i %s %i\n", yytext, lines, sourcefile, sourceline);
 {VOLATILE}			printf("%s KEYWORD TVolatile %i %s %i\n", yytext, lines, sourcefile, sourceline);
 {DO}				printf("%s KEYWORD TDo %i %s %i\n", yytext, lines, sourcefile, sourceline);
-{IF}				yylval.str = strdup(yytext); return TIf;
+{IF}				printf("%s KEYWORD TIf %i %s %i\n", yytext, lines, sourcefile, sourceline);
 {STATIC}			printf("%s KEYWORD TStatic %i %s %i\n", yytext, lines, sourcefile, sourceline);
-{WHILE}				yylval.str = strdup(yytext); return TWhile;
+{WHILE}				printf("%s KEYWORD TWhile %i %s %i\n", yytext, lines, sourcefile, sourceline);
+
 {SIZEOF}			printf("%s OPERATOR TSizeof %i %s %i\n", yytext, lines, sourcefile, sourceline);
 
-{IDENTIFIER}			yylval.str = strdup(yytext); return TIdentifier;
+{IDENTIFIER}			printf("%s IDENTIFIER TIdentifier %i %s %i\n", yytext, lines, sourcefile, sourceline);
 
-{OPENBRACKET}			yylval.str = strdup(yytext); return TOpenBracket;
-{CLOSEBRACKET}			yylval.str = strdup(yytext); return TCloseBracket;
-{OPENROUND}			yylval.str = strdup(yytext); return TOpenRound;
-{CLOSEROUND}			yylval.str = strdup(yytext); return TCloseRound;
-{OPENBRACE}			yylval.str = strdup(yytext); return TOpenBrace;
-{CLOSEBRACE}			yylval.str = strdup(yytext); return TCloseBrace;
-{COMMA}				yylval.str = strdup(yytext); return TComma;
-{COLON}				yylval.str = strdup(yytext); return TColon;
-{EQUAL}				yylval.str = strdup(yytext); return TEqual;
-{SEMICOLON}			yylval.str = strdup(yytext); return TSemicolon;
+{OPENBRACKET}			printf("%s OPERATOR TOpenBracket %i %s %i\n", yytext, lines, sourcefile, sourceline);
+{CLOSEBRACKET}			printf("%s OPERATOR TCloseBracket %i %s %i\n", yytext, lines, sourcefile, sourceline);
+{OPENROUND}			printf("%s OPERATOR TOpenRound %i %s %i\n", yytext, lines, sourcefile, sourceline);
+{CLOSEROUND}			printf("%s OPERATOR TCloseRound %i %s %i\n", yytext, lines, sourcefile, sourceline);
+{OPENBRACE}			printf("%s OPERATOR TOpenBrace %i %s %i\n", yytext, lines, sourcefile, sourceline);
+{CLOSEBRACE}			printf("%s OPERATOR TCloseBrace %i %s %i\n", yytext, lines, sourcefile, sourceline);
+{COMMA}				printf("%s OPERATOR TComma %i %s %i\n", yytext, lines, sourcefile, sourceline);
+{COLON}				printf("%s OPERATOR TColon %i %s %i\n", yytext, lines, sourcefile, sourceline);
+{EQUAL}				printf("%s OPERATOR TEqual %i %s %i\n", yytext, lines, sourcefile, sourceline);
+{SEMICOLON}			printf("%s OPERATOR TSemicolon %i %s %i\n", yytext, lines, sourcefile, sourceline);
 {ELLIPSIS}			printf("%s OPERATOR TEllipsis %i %s %i\n", yytext, lines, sourcefile, sourceline);
 {HASH}				printf("%s OPERATOR THash %i %s %i\n", yytext, lines, sourcefile, sourceline);
 {PERIOD}			printf("%s OPERATOR TPeriod %i %s %i\n", yytext, lines, sourcefile, sourceline);
@@ -237,3 +236,10 @@ INVALID			[^({IDENTIFIER}|{CONSTFLOAT}|{CONSTINT}|{HEXINT}|{OCTINT}|{UNSIGNEDINT
 {INVALID}			printf("%s INVALID TInvalid %i %s %i\n", yytext, lines, sourcefile, sourceline);
 
 %%
+
+int main()
+{
+    yylex();
+    
+    return 0;
+}
