@@ -5,7 +5,7 @@
   #include <stdlib.h>
   #include <map>
   #include <list>
-  #include "exp.h"
+  #include "c_codegen.h"
   using namespace std;
 
   // the root of the abstract syntax tree
@@ -71,10 +71,10 @@ stmtlist : stmtlist NEWLINE    /* empty line */
          |  
            { $$ = new list<statement *>(); }  /* empty string */
 
-stmt : TInt TIdentifier TEqual expression TSemiColon { 
+stmt : TInt TIdentifier TEqual expression TSemicolon { 
   $$ = new int_assignment_stmt($2, $4);
 	   }
-	| TIdentifier TEqual expression TSemiColon{ 
+	| TIdentifier TEqual expression TSemicolon{ 
   $$ = new assignment_stmt($1, $3);
 	   }
 

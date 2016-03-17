@@ -234,7 +234,7 @@ extern int yydebug;
 typedef union YYSTYPE YYSTYPE;
 union YYSTYPE
 {
-#line 23 "c_parser.yacc" /* yacc.c:1909  */
+#line 23 "src/c_parser.yacc" /* yacc.c:1909  */
 
 	int num;
 	char* id;

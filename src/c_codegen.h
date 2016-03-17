@@ -121,6 +121,16 @@ class assignment_stmt : public statement {
   void evaluate();
 };
 
+class int_assignment_stmt : public statement {
+ protected:
+  string id;
+  exp_node *exp;
+ public:
+  int_assignment_stmt(string name, exp_node *expression);
+  void print();
+  void evaluate();
+};
+
 class print_stmt: public statement {
  protected:
   string id;

@@ -35,13 +35,7 @@
 
 %token TOpenBracket TCloseBracket TOpenRound TCloseRound TOpenBrace TCloseBrace TComma TColon TEqual TSemicolon
  
-%token TEllipsis THash TPeriod TArrow TIncrement TDecrement TBitwiseAnd TAsterisk TAdd TSubtract TBitwiseNot TLogicNot TDivide TModulo TLeftShift TRightShift TLessThan TGreaterThan TLessEqual TGreaterEqual TLogicEqual TNotEqual THat TBitwiseOr TAnd TOr TQuestion TMultEqual TDivEqual TModEqual TAddEqual TSubEqual TLeftShiftEqual TRightShiftEqual TAndEqual THatEqual TOrEqual TDoubleHash NEWLINE
-
-%token <num> TConstInt
-
-%type <num> constant
-
-%token TConstFloat TCharConst TStringLiteral THexInt TOctalInt TUnsignedInt TSignedInt
+%token TEllipsis THash TPeriod TArrow TIncrement TDecrement TBitwiseAnd TAsterisk TAdd TSubtract TBitwiseNot TLogicNot TDivide TModulo TLeftShift TRightShift TLessThan TGreaterThan TLessEqual TGreaterEqual TLogicEqual TNotEqual THat TBitwiseOr TAnd TOr TQuestion TMultEqual TDivEqual TModEqual TAddEqual TSubEqual TLeftShiftEqual TRightShiftEqual TAndEqual THatEqual TOrEqual TDoubleHash
 
 %type <expnode> primary_expression postfix_expression unary_expression cast_expression multiplicative_expression additive_expression shift_expression relational_expression equality_expression  AND_expression exclusive_OR_expression inclusive_OR_expression logical_AND_expression logical_OR_expression conditional_expression assignment_expression expression constant_expression
 
@@ -53,39 +47,17 @@
 /* Grammar taken from "The C89 Draft" - http://port70.net/~nsz/c/c89/c89-draft.html */
 
 program : stmtlist { $$ = new pgm($1); root = $$; }
-
-
-stmtlist : stmtlist NEWLINE    /* empty line */
-	   { // just copy up the stmtlist when a blank line occurs
-             $$ = $1;
-           }
-         | stmtlist stmt NEWLINE
-            { // copy up the list and add the stmt to it
-              $$ = $1;
-              $1->push_back($2);
-            }
-         | stmtlist error NEWLINE
-	   { // just copy up the stmtlist when an error occurs
-             $$ = $1;
-             yyclearin; } 
-         |  
-           { $$ = new list<statement *>(); }  /* empty string */
-
-stmt : TInt TIdentifier TEqual expression TSemiColon { 
-  $$ = new int_assignment_stmt($2, $4);
-	   }
-	| TIdentifier TEqual expression TSemiColon{ 
+;
+stmt : TIdentifier TEqual expression { 
   $$ = new assignment_stmt($1, $3);
 	   }
-
-
-//type_name : TInt
+;
 
 /******3.1.3 Constants******/
 constant	
-	: //TConstFloat
-	/*|*/ TConstInt
-	//| TCharConst	
+	: TConstFloat
+	| TConstInt
+	| TCharConst	
 
 /***3.3 Expressions***/
 
@@ -93,7 +65,7 @@ constant
 primary_expression
 	: TIdentifier {$$ = new id_node($1);}
 	| constant {$$ = new number_node($1);}
-	//| TStringLiteral
+	| TStringLiteral
 	| TOpenRound expression TCloseRound {$$ = $2;}
 
 /******3.3.2 Postfix******/
@@ -114,24 +86,24 @@ argument_expression_list
 /******3.3.3 Unary******/
 unary_expression
 	: postfix_expression
-	//| TIncrement unary_expression
-	//| TDecrement unary_expression
-	//| unary_operator cast_expression
-	//| TSizeof unary_expression
-	//| TSizeof TOpenRound type_name TCloseRound
+	| TIncrement unary_expression
+	| TDecrement unary_expression
+	| unary_operator cast_expression
+	| TSizeof unary_expression
+	| TSizeof ( type_name )
 
-/*unary_operator
+unary_operator
 	: TBitwiseAnd
 	| TAsterisk
 	| TAdd
 	| TSubtract
 	| TBitwiseNot
-	| TLogicNot*/
+	| TLogicNot
 
 /******3.3.4 Cast******/
 cast_expression
 	: unary_expression
-	//| TOpenRound type_name TCloseRound cast_expression
+	| TOpenRound type_name TCloseRound cast_expression
 
 /******3.3.5 Multiplicative******/
 multiplicative_expression

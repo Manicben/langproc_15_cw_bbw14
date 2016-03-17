@@ -1,12 +1,24 @@
+CCC = g++
+CCFLAGS= -O2
+LEX = flex
+LFLAGS= -8     
+YACC= bison 
+YFLAGS= -d -t -y
 
+RM = src/bin/rm -f
 
-bin/c_lexer : src/c_lexer.yy.c
-	g++ src/c_lexer.yy.c -o bin/c_lexer
+bin/c_codegen: src/y.tab.o src/lex.yy.o src/c_codegen.o
+	${CCC} ${CCFLAGS} src/lex.yy.o src/y.tab.o src/c_codegen.o -o bin/c_codegen -lfl
 
-src/c_lexer.yy.c : src/c_lexer.lex
-	flex -o src/c_lexer.yy.c src/c_lexer.lex
+src/c_codegen.o: src/c_codegen.cpp src/c_codegen.h
+	${CCC} -c src/c_codegen.cpp
+src/y.tab.o: src/c_parser.yacc
+	${YACC} ${YFLAGS} src/c_parser.yacc
+	${CCC} ${CCFLAGS} src/y.tab.c -c 
 
-clean :
-	rm src/c_lexer.yy.c
-	rm bin/c_lexer
+src/lex.yy.o: src/c_lex.lex
+	${LEX} $(LFLAGS) src/c_lex.lex
+	${CCC} ${CCFLAGS} src/lex.yy.c -c 
 
+clean:
+	rm bin/c_codegen

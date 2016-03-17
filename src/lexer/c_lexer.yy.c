@@ -1,5 +1,6 @@
+#line 2 "src/c_lexer.yy.c"
 
-#line 3 "lex.yy.c"
+#line 4 "src/c_lexer.yy.c"
 
 #define  YY_INT_ALIGNED short int
 
@@ -693,16 +694,17 @@ int yy_flex_debug = 0;
 #define YY_MORE_ADJ 0
 #define YY_RESTORE_YY_MORE_OFFSET
 char *yytext;
-#line 1 "c_lex.lex"
-#line 3 "c_lex.lex"
+#line 1 "src/c_lexer.lex"
+#line 3 "src/c_lexer.lex"
 #include <stdio.h>
-#include <stdlib.h>
 #include <string>
-#include "c_codegen.h"
-#include "y.tab.h"
+#include "c_parse.tab.hpp"
 
 extern "C" int yylex();
 
+int lines = 1;
+int sourceline = 1;
+char const* sourcefile = "\"\"";
 /* Lexical Elements taken from "The C89 Draft" - http://port70.net/~nsz/c/c89/c89-draft.html */
 /* Keyword List */
 /* End of Keyword List */
@@ -713,7 +715,7 @@ extern "C" int yylex();
 /* Constants */
 /*CONSTENUM*/
 /* Misc */
-#line 717 "lex.yy.c"
+#line 719 "src/c_lexer.yy.c"
 
 #define INITIAL 0
 
@@ -900,10 +902,10 @@ YY_DECL
 	register char *yy_cp, *yy_bp;
 	register int yy_act;
     
-#line 127 "c_lex.lex"
+#line 128 "src/c_lexer.lex"
 
 
-#line 907 "lex.yy.c"
+#line 909 "src/c_lexer.yy.c"
 
 	if ( !(yy_init) )
 		{
@@ -988,454 +990,454 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 129 "c_lex.lex"
+#line 130 "src/c_lexer.lex"
 
 	YY_BREAK
 case 2:
 /* rule 2 can match eol */
 YY_RULE_SETUP
-#line 130 "c_lex.lex"
-return NEWLINE;
+#line 131 "src/c_lexer.lex"
+lines++, sourceline++;
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 132 "c_lex.lex"
-return TAuto;
+#line 133 "src/c_lexer.lex"
+;
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 133 "c_lex.lex"
-return TDouble;
+#line 134 "src/c_lexer.lex"
+;
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 134 "c_lex.lex"
-return TInt;
+#line 135 "src/c_lexer.lex"
+yylval.str = strdup(yytext); return TInt;
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 135 "c_lex.lex"
-return TStruct;
+#line 136 "src/c_lexer.lex"
+printf("%s KEYWORD TStruct %i %s %i\n", yytext, lines, sourcefile, sourceline);
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 136 "c_lex.lex"
-return TBreak;
+#line 137 "src/c_lexer.lex"
+printf("%s KEYWORD TBreak %i %s %i\n", yytext, lines, sourcefile, sourceline);
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 137 "c_lex.lex"
-return TElse;
+#line 138 "src/c_lexer.lex"
+printf("%s KEYWORD TElse %i %s %i\n", yytext, lines, sourcefile, sourceline);
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 138 "c_lex.lex"
-return TLong;
+#line 139 "src/c_lexer.lex"
+printf("%s KEYWORD TLong %i %s %i\n", yytext, lines, sourcefile, sourceline);
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 139 "c_lex.lex"
-return TSwitch;
+#line 140 "src/c_lexer.lex"
+printf("%s KEYWORD TSwitch %i %s %i\n", yytext, lines, sourcefile, sourceline);
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 140 "c_lex.lex"
-return TCase;
+#line 141 "src/c_lexer.lex"
+printf("%s KEYWORD TCase %i %s %i\n", yytext, lines, sourcefile, sourceline);
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 141 "c_lex.lex"
-return TEnum;
+#line 142 "src/c_lexer.lex"
+printf("%s KEYWORD TEnum %i %s %i\n", yytext, lines, sourcefile, sourceline);
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 142 "c_lex.lex"
-return TRegister;
+#line 143 "src/c_lexer.lex"
+printf("%s KEYWORD TRegister %i %s %i\n", yytext, lines, sourcefile, sourceline);
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 143 "c_lex.lex"
-return TTypedef;
+#line 144 "src/c_lexer.lex"
+printf("%s KEYWORD TTypedef %i %s %i\n", yytext, lines, sourcefile, sourceline);
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 144 "c_lex.lex"
-return TChar;
+#line 145 "src/c_lexer.lex"
+printf("%s KEYWORD TChar %i %s %i\n", yytext, lines, sourcefile, sourceline);
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 145 "c_lex.lex"
-return TExtern;
+#line 146 "src/c_lexer.lex"
+printf("%s KEYWORD TExtern %i %s %i\n", yytext, lines, sourcefile, sourceline);
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
-#line 146 "c_lex.lex"
-return TReturn;
+#line 147 "src/c_lexer.lex"
+yylval.str = strdup(yytext); return TReturn;
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
-#line 147 "c_lex.lex"
-return TUnion;
+#line 148 "src/c_lexer.lex"
+printf("%s KEYWORD TUnion %i %s %i\n", yytext, lines, sourcefile, sourceline);
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
-#line 148 "c_lex.lex"
-return TConst;
+#line 149 "src/c_lexer.lex"
+printf("%s KEYWORD TConst %i %s %i\n", yytext, lines, sourcefile, sourceline);
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
-#line 149 "c_lex.lex"
-return TFloat;
+#line 150 "src/c_lexer.lex"
+printf("%s KEYWORD TFloat %i %s %i\n", yytext, lines, sourcefile, sourceline);
 	YY_BREAK
 case 21:
 YY_RULE_SETUP
-#line 150 "c_lex.lex"
-return TShort;
+#line 151 "src/c_lexer.lex"
+printf("%s KEYWORD TShort %i %s %i\n", yytext, lines, sourcefile, sourceline);
 	YY_BREAK
 case 22:
 YY_RULE_SETUP
-#line 151 "c_lex.lex"
-return TUnsigned;
+#line 152 "src/c_lexer.lex"
+printf("%s KEYWORD TUnsigned %i %s %i\n", yytext, lines, sourcefile, sourceline);
 	YY_BREAK
 case 23:
 YY_RULE_SETUP
-#line 152 "c_lex.lex"
-return TContinue;
+#line 153 "src/c_lexer.lex"
+printf("%s KEYWORD TContinue %i %s %i\n", yytext, lines, sourcefile, sourceline);
 	YY_BREAK
 case 24:
 YY_RULE_SETUP
-#line 153 "c_lex.lex"
-return TFor;
+#line 154 "src/c_lexer.lex"
+yylval.str = strdup(yytext); return TFor;
 	YY_BREAK
 case 25:
 YY_RULE_SETUP
-#line 154 "c_lex.lex"
-return TSigned;
+#line 155 "src/c_lexer.lex"
+printf("%s KEYWORD TSigned %i %s %i\n", yytext, lines, sourcefile, sourceline);
 	YY_BREAK
 case 26:
 YY_RULE_SETUP
-#line 155 "c_lex.lex"
-return TVoid;
+#line 156 "src/c_lexer.lex"
+printf("%s KEYWORD TVoid %i %s %i\n", yytext, lines, sourcefile, sourceline);
 	YY_BREAK
 case 27:
 YY_RULE_SETUP
-#line 156 "c_lex.lex"
-return TDefault;
+#line 157 "src/c_lexer.lex"
+printf("%s KEYWORD TDefault %i %s %i\n", yytext, lines, sourcefile, sourceline);
 	YY_BREAK
 case 28:
 YY_RULE_SETUP
-#line 157 "c_lex.lex"
-return TGoto;
+#line 158 "src/c_lexer.lex"
+printf("%s KEYWORD TGoto %i %s %i\n", yytext, lines, sourcefile, sourceline);
 	YY_BREAK
 case 29:
 YY_RULE_SETUP
-#line 158 "c_lex.lex"
-return TVolatile;
+#line 159 "src/c_lexer.lex"
+printf("%s KEYWORD TVolatile %i %s %i\n", yytext, lines, sourcefile, sourceline);
 	YY_BREAK
 case 30:
 YY_RULE_SETUP
-#line 159 "c_lex.lex"
-return TDo;
+#line 160 "src/c_lexer.lex"
+printf("%s KEYWORD TDo %i %s %i\n", yytext, lines, sourcefile, sourceline);
 	YY_BREAK
 case 31:
 YY_RULE_SETUP
-#line 160 "c_lex.lex"
-return TIf;
+#line 161 "src/c_lexer.lex"
+yylval.str = strdup(yytext); return TIf;
 	YY_BREAK
 case 32:
 YY_RULE_SETUP
-#line 161 "c_lex.lex"
-return TStatic;
+#line 162 "src/c_lexer.lex"
+printf("%s KEYWORD TStatic %i %s %i\n", yytext, lines, sourcefile, sourceline);
 	YY_BREAK
 case 33:
 YY_RULE_SETUP
-#line 162 "c_lex.lex"
-return TWhile;
+#line 163 "src/c_lexer.lex"
+yylval.str = strdup(yytext); return TWhile;
 	YY_BREAK
 case 34:
 YY_RULE_SETUP
-#line 163 "c_lex.lex"
-return TSizeof;
+#line 164 "src/c_lexer.lex"
+printf("%s OPERATOR TSizeof %i %s %i\n", yytext, lines, sourcefile, sourceline);
 	YY_BREAK
 case 35:
 YY_RULE_SETUP
-#line 165 "c_lex.lex"
-yylval.id = strdup(yytext); return TIdentifier;
+#line 166 "src/c_lexer.lex"
+yylval.str = strdup(yytext); return TIdentifier;
 	YY_BREAK
 case 36:
 YY_RULE_SETUP
-#line 167 "c_lex.lex"
-return TOpenBracket;
+#line 168 "src/c_lexer.lex"
+yylval.str = strdup(yytext); return TOpenBracket;
 	YY_BREAK
 case 37:
 YY_RULE_SETUP
-#line 168 "c_lex.lex"
-return TCloseBracket;
+#line 169 "src/c_lexer.lex"
+yylval.str = strdup(yytext); return TCloseBracket;
 	YY_BREAK
 case 38:
 YY_RULE_SETUP
-#line 169 "c_lex.lex"
-return TOpenRound;
+#line 170 "src/c_lexer.lex"
+yylval.str = strdup(yytext); return TOpenRound;
 	YY_BREAK
 case 39:
 YY_RULE_SETUP
-#line 170 "c_lex.lex"
-return TCloseRound;
+#line 171 "src/c_lexer.lex"
+yylval.str = strdup(yytext); return TCloseRound;
 	YY_BREAK
 case 40:
 YY_RULE_SETUP
-#line 171 "c_lex.lex"
-return TOpenBrace;
+#line 172 "src/c_lexer.lex"
+yylval.str = strdup(yytext); return TOpenBrace;
 	YY_BREAK
 case 41:
 YY_RULE_SETUP
-#line 172 "c_lex.lex"
-return TCloseBrace;
+#line 173 "src/c_lexer.lex"
+yylval.str = strdup(yytext); return TCloseBrace;
 	YY_BREAK
 case 42:
 YY_RULE_SETUP
-#line 173 "c_lex.lex"
-return TComma;
+#line 174 "src/c_lexer.lex"
+yylval.str = strdup(yytext); return TComma;
 	YY_BREAK
 case 43:
 YY_RULE_SETUP
-#line 174 "c_lex.lex"
-return TColon;
+#line 175 "src/c_lexer.lex"
+yylval.str = strdup(yytext); return TColon;
 	YY_BREAK
 case 44:
 YY_RULE_SETUP
-#line 175 "c_lex.lex"
-return TEqual;
+#line 176 "src/c_lexer.lex"
+yylval.str = strdup(yytext); return TEqual;
 	YY_BREAK
 case 45:
 YY_RULE_SETUP
-#line 176 "c_lex.lex"
-return TSemicolon;
+#line 177 "src/c_lexer.lex"
+yylval.str = strdup(yytext); return TSemicolon;
 	YY_BREAK
 case 46:
 YY_RULE_SETUP
-#line 178 "c_lex.lex"
-return TEllipsis;
+#line 178 "src/c_lexer.lex"
+printf("%s OPERATOR TEllipsis %i %s %i\n", yytext, lines, sourcefile, sourceline);
 	YY_BREAK
 case 47:
 YY_RULE_SETUP
-#line 179 "c_lex.lex"
-return THash;
+#line 179 "src/c_lexer.lex"
+printf("%s OPERATOR THash %i %s %i\n", yytext, lines, sourcefile, sourceline);
 	YY_BREAK
 case 48:
 YY_RULE_SETUP
-#line 180 "c_lex.lex"
-return TPeriod;
+#line 180 "src/c_lexer.lex"
+printf("%s OPERATOR TPeriod %i %s %i\n", yytext, lines, sourcefile, sourceline);
 	YY_BREAK
 case 49:
 YY_RULE_SETUP
-#line 181 "c_lex.lex"
-return TArrow;
+#line 181 "src/c_lexer.lex"
+printf("%s OPERATOR TArrow %i %s %i\n", yytext, lines, sourcefile, sourceline);
 	YY_BREAK
 case 50:
 YY_RULE_SETUP
-#line 182 "c_lex.lex"
-return TIncrement;
+#line 182 "src/c_lexer.lex"
+printf("%s OPERATOR TIncrement %i %s %i\n", yytext, lines, sourcefile, sourceline);
 	YY_BREAK
 case 51:
 YY_RULE_SETUP
-#line 183 "c_lex.lex"
-return TDecrement;
+#line 183 "src/c_lexer.lex"
+printf("%s OPERATOR TDecrement %i %s %i\n", yytext, lines, sourcefile, sourceline);
 	YY_BREAK
 case 52:
 YY_RULE_SETUP
-#line 184 "c_lex.lex"
-return TBitwiseAnd;
+#line 184 "src/c_lexer.lex"
+printf("%s OPERATOR TBitwiseAnd %i %s %i\n", yytext, lines, sourcefile, sourceline);
 	YY_BREAK
 case 53:
 YY_RULE_SETUP
-#line 185 "c_lex.lex"
-return TAsterisk;
+#line 185 "src/c_lexer.lex"
+printf("%s OPERATOR TAsterisk %i %s %i\n", yytext, lines, sourcefile, sourceline);
 	YY_BREAK
 case 54:
 YY_RULE_SETUP
-#line 186 "c_lex.lex"
-return TAdd;
+#line 186 "src/c_lexer.lex"
+printf("%s OPERATOR TAdd %i %s %i\n", yytext, lines, sourcefile, sourceline);
 	YY_BREAK
 case 55:
 YY_RULE_SETUP
-#line 187 "c_lex.lex"
-return TSubtract;
+#line 187 "src/c_lexer.lex"
+printf("%s OPERATOR TSubtract %i %s %i\n", yytext, lines, sourcefile, sourceline);
 	YY_BREAK
 case 56:
 YY_RULE_SETUP
-#line 188 "c_lex.lex"
-return TBitwiseNot;
+#line 188 "src/c_lexer.lex"
+printf("%s OPERATOR TBitwiseNot %i %s %i\n", yytext, lines, sourcefile, sourceline);
 	YY_BREAK
 case 57:
 YY_RULE_SETUP
-#line 189 "c_lex.lex"
-return TLogicNot;
+#line 189 "src/c_lexer.lex"
+printf("%s OPERATOR TLogicNot %i %s %i\n", yytext, lines, sourcefile, sourceline);
 	YY_BREAK
 case 58:
 YY_RULE_SETUP
-#line 190 "c_lex.lex"
-return TDivide;
+#line 190 "src/c_lexer.lex"
+printf("%s OPERATOR TDivide %i %s %i\n", yytext, lines, sourcefile, sourceline);
 	YY_BREAK
 case 59:
 YY_RULE_SETUP
-#line 191 "c_lex.lex"
-return TModulo;
+#line 191 "src/c_lexer.lex"
+printf("%s OPERATOR TModulo %i %s %i\n", yytext, lines, sourcefile, sourceline);
 	YY_BREAK
 case 60:
 YY_RULE_SETUP
-#line 192 "c_lex.lex"
-return TLeftShift;
+#line 192 "src/c_lexer.lex"
+printf("%s OPERATOR TLeftShift %i %s %i\n", yytext, lines, sourcefile, sourceline);
 	YY_BREAK
 case 61:
 YY_RULE_SETUP
-#line 193 "c_lex.lex"
-return TRightShift;
+#line 193 "src/c_lexer.lex"
+printf("%s OPERATOR TRightShift %i %s %i\n", yytext, lines, sourcefile, sourceline);
 	YY_BREAK
 case 62:
 YY_RULE_SETUP
-#line 194 "c_lex.lex"
-return TLessThan;
+#line 194 "src/c_lexer.lex"
+printf("%s OPERATOR TLessThan %i %s %i\n", yytext, lines, sourcefile, sourceline);
 	YY_BREAK
 case 63:
 YY_RULE_SETUP
-#line 195 "c_lex.lex"
-return TGreaterThan;
+#line 195 "src/c_lexer.lex"
+printf("%s OPERATOR TGreaterThan %i %s %i\n", yytext, lines, sourcefile, sourceline);
 	YY_BREAK
 case 64:
 YY_RULE_SETUP
-#line 196 "c_lex.lex"
-return TLessEqual;
+#line 196 "src/c_lexer.lex"
+printf("%s OPERATOR TLessEqual %i %s %i\n", yytext, lines, sourcefile, sourceline);
 	YY_BREAK
 case 65:
 YY_RULE_SETUP
-#line 197 "c_lex.lex"
-return TGreaterEqual;
+#line 197 "src/c_lexer.lex"
+printf("%s OPERATOR TGreaterEqual %i %s %i\n", yytext, lines, sourcefile, sourceline);
 	YY_BREAK
 case 66:
 YY_RULE_SETUP
-#line 198 "c_lex.lex"
-return TLogicEqual;
+#line 198 "src/c_lexer.lex"
+printf("%s OPERATOR TLogicEqual %i %s %i\n", yytext, lines, sourcefile, sourceline);
 	YY_BREAK
 case 67:
 YY_RULE_SETUP
-#line 199 "c_lex.lex"
-return TNotEqual;
+#line 199 "src/c_lexer.lex"
+printf("%s OPERATOR TNotEqual %i %s %i\n", yytext, lines, sourcefile, sourceline);
 	YY_BREAK
 case 68:
 YY_RULE_SETUP
-#line 200 "c_lex.lex"
-return THat;
+#line 200 "src/c_lexer.lex"
+printf("%s OPERATOR THat %i %s %i\n", yytext, lines, sourcefile, sourceline);
 	YY_BREAK
 case 69:
 YY_RULE_SETUP
-#line 201 "c_lex.lex"
-return TBitwiseOr;
+#line 201 "src/c_lexer.lex"
+printf("%s OPERATOR TBitwiseOr %i %s %i\n", yytext, lines, sourcefile, sourceline);
 	YY_BREAK
 case 70:
 YY_RULE_SETUP
-#line 202 "c_lex.lex"
-return TAnd;
+#line 202 "src/c_lexer.lex"
+printf("%s OPERATOR TAnd %i %s %i\n", yytext, lines, sourcefile, sourceline);
 	YY_BREAK
 case 71:
 YY_RULE_SETUP
-#line 203 "c_lex.lex"
-return TOr;
+#line 203 "src/c_lexer.lex"
+printf("%s OPERATOR TOr %i %s %i\n", yytext, lines, sourcefile, sourceline);
 	YY_BREAK
 case 72:
 YY_RULE_SETUP
-#line 204 "c_lex.lex"
-return TQuestion;
+#line 204 "src/c_lexer.lex"
+printf("%s OPERATOR TQuestion %i %s %i\n", yytext, lines, sourcefile, sourceline);
 	YY_BREAK
 case 73:
 YY_RULE_SETUP
-#line 205 "c_lex.lex"
-return TMultEqual;
+#line 205 "src/c_lexer.lex"
+printf("%s OPERATOR TMultEqual %i %s %i\n", yytext, lines, sourcefile, sourceline);
 	YY_BREAK
 case 74:
 YY_RULE_SETUP
-#line 206 "c_lex.lex"
-return TDivEqual;
+#line 206 "src/c_lexer.lex"
+printf("%s OPERATOR TDivEqual %i %s %i\n", yytext, lines, sourcefile, sourceline);
 	YY_BREAK
 case 75:
 YY_RULE_SETUP
-#line 207 "c_lex.lex"
-return TModEqual;
+#line 207 "src/c_lexer.lex"
+printf("%s OPERATOR TModEqual %i %s %i\n", yytext, lines, sourcefile, sourceline);
 	YY_BREAK
 case 76:
 YY_RULE_SETUP
-#line 208 "c_lex.lex"
-return TAddEqual;
+#line 208 "src/c_lexer.lex"
+printf("%s OPERATOR TAddEqual %i %s %i\n", yytext, lines, sourcefile, sourceline);
 	YY_BREAK
 case 77:
 YY_RULE_SETUP
-#line 209 "c_lex.lex"
-return TSubEqual;
+#line 209 "src/c_lexer.lex"
+printf("%s OPERATOR TSubEqual %i %s %i\n", yytext, lines, sourcefile, sourceline);
 	YY_BREAK
 case 78:
 YY_RULE_SETUP
-#line 210 "c_lex.lex"
-return TLeftShiftEqual;
+#line 210 "src/c_lexer.lex"
+printf("%s OPERATOR TLeftShiftEqual %i %s %i\n", yytext, lines, sourcefile, sourceline);
 	YY_BREAK
 case 79:
 YY_RULE_SETUP
-#line 211 "c_lex.lex"
-return TRightShiftEqual;
+#line 211 "src/c_lexer.lex"
+printf("%s OPERATOR TRightShiftEqual %i %s %i\n", yytext, lines, sourcefile, sourceline);
 	YY_BREAK
 case 80:
 YY_RULE_SETUP
-#line 212 "c_lex.lex"
-return TAndEqual;
+#line 212 "src/c_lexer.lex"
+printf("%s OPERATOR TAndEqual %i %s %i\n", yytext, lines, sourcefile, sourceline);
 	YY_BREAK
 case 81:
 YY_RULE_SETUP
-#line 213 "c_lex.lex"
-return THatEqual;
+#line 213 "src/c_lexer.lex"
+printf("%s OPERATOR THatEqual %i %s %i\n", yytext, lines, sourcefile, sourceline);
 	YY_BREAK
 case 82:
 YY_RULE_SETUP
-#line 214 "c_lex.lex"
-return TOrEqual;
+#line 214 "src/c_lexer.lex"
+printf("%s OPERATOR TOrEqual %i %s %i\n", yytext, lines, sourcefile, sourceline);
 	YY_BREAK
 case 83:
 YY_RULE_SETUP
-#line 215 "c_lex.lex"
-return TDoubleHash;
+#line 215 "src/c_lexer.lex"
+printf("%s OPERATOR TDoubleHash %i %s %i\n", yytext, lines, sourcefile, sourceline);
 	YY_BREAK
 case 84:
 YY_RULE_SETUP
-#line 217 "c_lex.lex"
-return TConstFloat;  
+#line 217 "src/c_lexer.lex"
+printf("%s CONSTANT TConstFloat %i %s %i\n", yytext, lines, sourcefile, sourceline);
 	YY_BREAK
 case 85:
 YY_RULE_SETUP
-#line 218 "c_lex.lex"
-yylval.num = atoi(yytext); return TConstInt;    
+#line 218 "src/c_lexer.lex"
+printf("%s CONSTANT TConstInt %i %s %i\n", yytext, lines, sourcefile, sourceline);
 	YY_BREAK
 case 86:
 YY_RULE_SETUP
-#line 219 "c_lex.lex"
-return THexInt;      
+#line 219 "src/c_lexer.lex"
+printf("%s CONSTANT THexInt %i %s %i\n", yytext, lines, sourcefile, sourceline);
 	YY_BREAK
 case 87:
 YY_RULE_SETUP
-#line 220 "c_lex.lex"
-return TOctalInt;    
+#line 220 "src/c_lexer.lex"
+printf("%s CONSTANT TOctalInt %i %s %i\n", yytext, lines, sourcefile, sourceline);
 	YY_BREAK
 case 88:
 YY_RULE_SETUP
-#line 221 "c_lex.lex"
-yylval.num = atoi(yytext); return TUnsignedInt; 
+#line 221 "src/c_lexer.lex"
+printf("%s CONSTANT TUnsignedInt %i %s %i\n", yytext, lines, sourcefile, sourceline);
 	YY_BREAK
 case 89:
 YY_RULE_SETUP
-#line 222 "c_lex.lex"
-yylval.num = atoi(yytext); return TSignedInt;   
+#line 222 "src/c_lexer.lex"
+printf("%s CONSTANT TSignedInt %i %s %i\n", yytext, lines, sourcefile, sourceline);
 	YY_BREAK
 case 90:
 YY_RULE_SETUP
-#line 224 "c_lex.lex"
-yylval.id = strdup(yytext); return TStringLiteral;
+#line 224 "src/c_lexer.lex"
+printf("%s STRINGLITERAL TString %i %s %i\n", yytext, lines, sourcefile, sourceline);
 	YY_BREAK
 case 91:
 /* rule 91 can match eol */
@@ -1443,21 +1445,30 @@ case 91:
 (yy_c_buf_p) = yy_cp -= 1;
 YY_DO_BEFORE_ACTION; /* set up yytext again */
 YY_RULE_SETUP
-#line 226 "c_lex.lex"
+#line 226 "src/c_lexer.lex"
+{ 
+				std::string sourcefilepp = yytext;
 
+				size_t start = sourcefilepp.find('"');
+				size_t end = sourcefilepp.find('"', start+1);
+				size_t diff = end - start;
+
+				sourcefile = strdup(sourcefilepp.substr(start,diff+1).c_str());
+				sourceline = atoi(&yytext[2]) - 1;
+				}
 	YY_BREAK
 case 92:
 /* rule 92 can match eol */
 YY_RULE_SETUP
-#line 228 "c_lex.lex"
-
+#line 237 "src/c_lexer.lex"
+printf("%s INVALID TInvalid %i %s %i\n", yytext, lines, sourcefile, sourceline);
 	YY_BREAK
 case 93:
 YY_RULE_SETUP
-#line 230 "c_lex.lex"
+#line 239 "src/c_lexer.lex"
 ECHO;
 	YY_BREAK
-#line 1461 "lex.yy.c"
+#line 1472 "src/c_lexer.yy.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -2455,9 +2466,7 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 230 "c_lex.lex"
-
-
+#line 239 "src/c_lexer.lex"
 
 
 

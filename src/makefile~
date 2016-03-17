@@ -16,7 +16,7 @@ y.tab.o: c_parser.yacc
 	${YACC} ${YFLAGS} c_parser.yacc
 	${CCC} ${CCFLAGS} y.tab.c -c 
 
-lex.yy.o: c_lex.lex
+lex.yy.o: c_codegen.lex
 	${LEX} $(LFLAGS) c_lex.lex
 	${CCC} ${CCFLAGS} lex.yy.c -c 
 

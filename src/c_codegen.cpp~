@@ -109,7 +109,7 @@ void multiply_node:: print() {
   //cout << " * ";
   //right->print();
   //cout << ")";
-  //cout << endl;
+  cout << endl;
   cout << "mul $s0, ";
   left->print();
   cout << ", ";

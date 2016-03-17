@@ -62,7 +62,7 @@
 
 
 /* Copy the first part of user declarations.  */
-#line 1 "c_parser.yacc" /* yacc.c:339  */
+#line 1 "src/c_parser.yacc" /* yacc.c:339  */
 
   #include <stdio.h>
   #include <iostream>
@@ -308,7 +308,7 @@ extern int yydebug;
 typedef union YYSTYPE YYSTYPE;
 union YYSTYPE
 {
-#line 23 "c_parser.yacc" /* yacc.c:355  */
+#line 23 "src/c_parser.yacc" /* yacc.c:355  */
 
 	int num;
 	char* id;
@@ -1511,13 +1511,13 @@ yyreduce:
   switch (yyn)
     {
         case 2:
-#line 55 "c_parser.yacc" /* yacc.c:1646  */
+#line 55 "src/c_parser.yacc" /* yacc.c:1646  */
     { (yyval.prog) = new pgm((yyvsp[0].stmts)); root = (yyval.prog); }
 #line 1517 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 3:
-#line 59 "c_parser.yacc" /* yacc.c:1646  */
+#line 59 "src/c_parser.yacc" /* yacc.c:1646  */
     { // just copy up the stmtlist when a blank line occurs
              (yyval.stmts) = (yyvsp[-1].stmts);
            }
@@ -1525,7 +1525,7 @@ yyreduce:
     break;
 
   case 4:
-#line 63 "c_parser.yacc" /* yacc.c:1646  */
+#line 63 "src/c_parser.yacc" /* yacc.c:1646  */
     { // copy up the list and add the stmt to it
               (yyval.stmts) = (yyvsp[-2].stmts);
               (yyvsp[-2].stmts)->push_back((yyvsp[-1].st));
@@ -1534,7 +1534,7 @@ yyreduce:
     break;
 
   case 5:
-#line 68 "c_parser.yacc" /* yacc.c:1646  */
+#line 68 "src/c_parser.yacc" /* yacc.c:1646  */
     { // just copy up the stmtlist when an error occurs
              (yyval.stmts) = (yyvsp[-2].stmts);
              yyclearin; }
@@ -1542,13 +1542,13 @@ yyreduce:
     break;
 
   case 6:
-#line 72 "c_parser.yacc" /* yacc.c:1646  */
+#line 72 "src/c_parser.yacc" /* yacc.c:1646  */
     { (yyval.stmts) = new list<statement *>(); }
 #line 1548 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 7:
-#line 74 "c_parser.yacc" /* yacc.c:1646  */
+#line 74 "src/c_parser.yacc" /* yacc.c:1646  */
     { 
   (yyval.st) = new int_assignment_stmt((yyvsp[-3].id), (yyvsp[-1].expnode));
 	   }
@@ -1556,7 +1556,7 @@ yyreduce:
     break;
 
   case 8:
-#line 77 "c_parser.yacc" /* yacc.c:1646  */
+#line 77 "src/c_parser.yacc" /* yacc.c:1646  */
     { 
   (yyval.st) = new assignment_stmt((yyvsp[-3].id), (yyvsp[-1].expnode));
 	   }
@@ -1564,49 +1564,49 @@ yyreduce:
     break;
 
   case 10:
-#line 94 "c_parser.yacc" /* yacc.c:1646  */
+#line 94 "src/c_parser.yacc" /* yacc.c:1646  */
     {(yyval.expnode) = new id_node((yyvsp[0].id));}
 #line 1570 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 11:
-#line 95 "c_parser.yacc" /* yacc.c:1646  */
+#line 95 "src/c_parser.yacc" /* yacc.c:1646  */
     {(yyval.expnode) = new number_node((yyvsp[0].num));}
 #line 1576 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 12:
-#line 97 "c_parser.yacc" /* yacc.c:1646  */
+#line 97 "src/c_parser.yacc" /* yacc.c:1646  */
     {(yyval.expnode) = (yyvsp[-1].expnode);}
 #line 1582 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 26:
-#line 139 "c_parser.yacc" /* yacc.c:1646  */
+#line 139 "src/c_parser.yacc" /* yacc.c:1646  */
     {(yyval.expnode) = new multiply_node((yyvsp[-2].expnode), (yyvsp[0].expnode)); }
 #line 1588 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 27:
-#line 140 "c_parser.yacc" /* yacc.c:1646  */
+#line 140 "src/c_parser.yacc" /* yacc.c:1646  */
     {(yyval.expnode) = new divide_node((yyvsp[-2].expnode), (yyvsp[0].expnode)); }
 #line 1594 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 28:
-#line 141 "c_parser.yacc" /* yacc.c:1646  */
+#line 141 "src/c_parser.yacc" /* yacc.c:1646  */
     {(yyval.expnode) = new modulo_node((yyvsp[-2].expnode), (yyvsp[0].expnode)); }
 #line 1600 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 30:
-#line 146 "c_parser.yacc" /* yacc.c:1646  */
+#line 146 "src/c_parser.yacc" /* yacc.c:1646  */
     {(yyval.expnode) = new add_node((yyvsp[-2].expnode), (yyvsp[0].expnode)); }
 #line 1606 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 31:
-#line 147 "c_parser.yacc" /* yacc.c:1646  */
+#line 147 "src/c_parser.yacc" /* yacc.c:1646  */
     {(yyval.expnode) = new subtract_node((yyvsp[-2].expnode), (yyvsp[0].expnode)); }
 #line 1612 "y.tab.c" /* yacc.c:1646  */
     break;
@@ -1840,7 +1840,7 @@ yyreturn:
 #endif
   return yyresult;
 }
-#line 225 "c_parser.yacc" /* yacc.c:1906  */
+#line 225 "src/c_parser.yacc" /* yacc.c:1906  */
 
 
 int main()

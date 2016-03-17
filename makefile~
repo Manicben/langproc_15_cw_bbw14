@@ -5,20 +5,20 @@ LFLAGS= -8
 YACC= bison 
 YFLAGS= -d -t -y
 
-RM = /bin/rm -f
+RM = src/bin/rm -f
 
-exp: y.tab.o lex.yy.o exp.o
-	${CCC} ${CCFLAGS} lex.yy.o y.tab.o exp.o -o exp -lfl
+bin/c_codegen: src/y.tab.o src/lex.yy.o src/c_codegen.o
+	${CCC} ${CCFLAGS} src/lex.yy.o src/y.tab.o src/c_codegen.o -o bin/c_codegen -lfl
 
-exp.o: exp.cpp exp.h
-	${CCC} -c exp.cpp
-y.tab.o: exp.yacc
-	${YACC} ${YFLAGS} exp.yacc
-	${CCC} ${CCFLAGS} y.tab.c -c 
+src/c_codegen.o: src/c_codegen.cpp src/c_codegen.h
+	${CCC} -c src/c_codegen.cpp
+src/y.tab.o: src/c_parser.yacc
+	${YACC} ${YFLAGS} src/c_parser.yacc
+	${CCC} ${CCFLAGS} src/y.tab.c -c 
 
-lex.yy.o: exp.lex
-	${LEX} $(LFLAGS) exp.lex
-	${CCC} ${CCFLAGS} lex.yy.c -c 
+src/lex.yy.o: src/c_lex.lex
+	${LEX} $(LFLAGS) src/c_lex.lex
+	${CCC} ${CCFLAGS} src/lex.yy.c -c 
 
 clean:
-	/bin/rm -f lex.yy.* y.tab.* *.o exp
+	src/bin/rm -f lex.yy.* y.tab.* *.o c_codegen
